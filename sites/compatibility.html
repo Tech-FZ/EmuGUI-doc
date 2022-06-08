@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+    <title>The EmuGUI documentation</title>
+</head>
+<body>
+    <div class="site">
+        <h1 class="home"><a href="../index.html">EmuGUI documentation</a></h1>
+        <h2 class="heading">EmuGUI compatibility list</h2>
+
+        <p>
+            EmuGUI is a program that you need to test. That's why compatibility lists exist. These OS listings are categorized into OS groups.
+        </p>
+
+        <h3 class="secondaryheading">Microsoft operating systems</h3>
+
+        <table>
+            <tr>
+                <th>Operating system</th>
+                <th>Architecture</th>
+                <th>Working</th>
+                <th>Notes</th>
+            </tr>
+
+            <tr>
+                <td>Windows NT 4.0 Workstation Service Pack 1</td>
+                <td>MIPS64el</td>
+                <td>Yes</td>
+
+                <td>
+                    Needs external BIOS, you can get it 
+                    <a href="http://web.archive.org/web/20150809205748/http://hpoussineau.free.fr/qemu/firmware/magnum-4000/setup.zip">
+                        here
+                    </a>. Rename NTPROM.RAW to mipsel_bios.bin and copy that file onto the root of EmuGUI.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Windows 98 Second Edition</td>
+                <td>i386</td>
+                <td>Yes</td>
+
+                <td>
+                    If the bootscreen hangs, use VirtualBox, boot Windows in Safe Mode, shut it down and get back to EmuGUI.<br>
+                    Generally, special procedures have to be done to get Windows 98 running.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Windows 2000 Professional Service Pack 4</td>
+                <td>i386</td>
+                <td>No</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Windows XP Home Edition Service Pack 3</td>
+                <td>i386</td>
+                <td>No</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Windows 7 Ultimate Service Pack 1</td>
+                <td>x86_64</td>
+                <td>Yes</td>
+                <td>Aero isn't working due to driver issues.</td>
+            </tr>
+        </table>
+
+        <h3 class="secondaryheading">Linux operating systems</h3>
+
+        <h4>Ubuntu-based Linux distributions</h4>
+
+        <table>
+            <tr>
+                <th>Operating system</th>
+                <th>Architecture</th>
+                <th>Working</th>
+                <th>Notes</th>
+            </tr>
+
+            <tr>
+                <td>Ubuntu Desktop 12.04 LTS</td>
+                <td>PowerPC</td>
+                <td>Live CD only</td>
+                <td>Left/right clicks are not recognized.</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
