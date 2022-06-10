@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <title>The EmuGUI documentation</title>
+</head>
+<body>
+    <div class="site">
+        <h1 class="home"><a href="../../../../index.html">EmuGUI documentation</a></h1>
+        <h2 class="heading">How to install Windows NT 4.0 MIPS on QEMU with EmuGUI</h2>
+
+        <p>
+            Windows NT 4.0 is an operating system released by Microsoft in 29th July, 1996
+            as the successor of Windows NT 3.51. It runs on i386, PowerPC, Alpha and - the architecture
+            that we cover here - MIPS machines. Today we are going to run the MIPS version of Windows
+            NT 4.0 in QEMU with the help of EmuGUI. Let's get into it!
+        </p>
+
+        <img id="winNT4MipsQemu" width="547" height="462" src="../../../../media/WNT4_MIPS_Qemu.png">
+        <p>The MIPS port of Windows NT 4.0 Workstation running on QEMU. (Nicolas Lucien)</p>
+
+        <h3 class="secondaryheading">Video version</h3>
+
+        <iframe class="vidpage" width="320" height="180" src="https://youtu.be/XWyn6905YLY"></iframe>
+
+        <p>
+            Made by lucien-rowan (aka Nicolas Lucien). (C) 2022 lucien-rowan. All rights reserved.<br>
+            Link: <a href="https://youtu.be/XWyn6905YLY">https://youtu.be/XWyn6905YLY</a>
+        </p>
+
+        <h3 class="secondaryheading">Notes</h3>
+
+        <ol>
+            <li>
+                Only few commercial programs run on the MIPS version of Windows NT, so it is more of a curiosity than something
+                you could work with. However, some programs have been ported to Windows NT 4.0 MIPS.
+            </li>
+
+            <li>
+                Generally, every edition of Windows NT 4.0 MIPS should run, but using Windows NT 4.0
+                Workstation Service Pack 1 is recommended.
+            </li>
+        </ol>
+
+        <h3 class="secondaryheading">Installation</h3>
+
+        <h4>BIOS</h4>
+
+        <p>
+            After you have QEMU and EmuGUI ready, you must download an external BIOS for Windows to work.
+            For copyright reasons, it is not included in these programs.
+        </p>
+
+        <ol>
+            <li>
+                Click <a href="http://web.archive.org/web/20150809205748/http://hpoussineau.free.fr/qemu/firmware/magnum-4000/setup.zip">
+                    here
+                </a> to download the required ZIP file.
+            </li>
+
+            <li>
+                Extract the ZIP file and navigate to the extracted content.
+            </li>
+
+            <li>
+                Rename the file "NTPROM.RAW" to "mipsel_bios.bin".
+            </li>
+
+            <li>
+                Copy the file "mipsel_bios.bin" to where the EmuGUI executable is stored.
+            </li>
+
+            <li>
+                Start EmuGUI as usual.
+            </li>
+        </ol>
+
+        <h4>Creating the virtual machine</h4>
+
+        <p>
+            After preparing the required files, you are now ready to create the Windows NT MIPS
+            virtual machine.
+        </p>
+
+        <ol>
+            <li>
+                Click on "New Virtual Machine"
+            </li>
+
+            <li>
+                Type in a suitable name for the virtual machine, select the "mips64el"
+                architecture and click "Next".
+            </li>
+
+            <li>
+                Select "magnum" as the machine and set the CPU as "Let QEMU decide".
+                Give the VM between 64 and 128 MB of RAM and click "Next".
+            </li>
+
+            <li>
+                Select the desired path for the virtual disk and make sure it is going to be
+                in the qcow2 format. The maximum amount of space this version of Windows is
+                going to work with is 2 GB. Click "Next" when everything is done.
+            </li>
+
+            <li>
+                For VGA, let QEMU decide. Select "dp83932" as the network adapter. Click "Next"
+                with the USB device tablet unchecked.
+            </li>
+
+            <li>
+                For the BIOS location, just type in a dot and click "Next".
+            </li>
+
+            <li>
+                Before you click "Finish", add the following additional arguments:
+                <code>-global ds1225y.filename=nvram -global ds1225y.size=8200</code>
+            </li>
+        </ol>
+
+        <h4>Preparing the BIOS</h4>
+
+        <p>
+            After a wait of up to ten seconds, you should see the Windows NT 4.0
+            virtual machine you just created.
+        </p>
+
+        <ol>
+            <li>
+                Select that VM and click on "Start Selected Virtual Machine".
+            </li>
+
+            <li>
+                Select your Windows NT 4.0 ISO file as the inserted cdrom.
+            </li>
+
+            <li>
+                Leave the date as it is, boot from d and click on "Start VM".
+            </li>
+
+            <li>
+                A QEMU window should now popup. Press Enter when you see the error message
+                telling that the NVRAM has not been initialized yet.
+            </li>
+
+            <li>
+                Navigate to "Run setup", then to "Initialize system" and from there to
+                "Set default configuration".
+            </li>
+
+            <li>
+                Just press Enter in the corresponding options. What the BIOS suggests
+                has proven to run well.
+            </li>
+
+            <li>
+                Back in the "Initialize system" menu, navigate to "Set default environments"
+                and select the "Scsi Hard Disk". Leave everything else at what the BIOS
+                recommends.
+            </li>
+
+            <li>
+                If you accidentally clicked on "Set to system" when you started the VM,
+                go to "Set time" and type in "01-01-99" as a date and "00:00:00" as a time.
+                Leaving the date at 2022 will cause the NVRAM to reset itself all over again.
+            </li>
+
+            <li>
+                Now, navigate to "Set ethernet address" and leave everything as the BIOS
+                suggests.
+            </li>
+
+            <li>
+                Navigate to "Return to main menu" and then to "Exit". If the VM hangs, restart it
+                with the variables mentioned earlier.
+            </li>
+        </ol>
+
+        <h4>Installing Windows</h4>
+
+        <p>
+            Now for the best part, we are going to install Windows.
+        </p>
+
+        <ol>
+            <li>
+                If the NVRAM shows the error from earlier again, go back to the last part.
+            </li>
+
+            <li>
+                If that error didn't occur, go to "Run a program" and type: 
+                <code>cd:\mips\arcinst</code>
+            </li>
+
+            <li>
+                Navigate to "Configure Partitions" and then to "Create system partition".
+            </li>
+
+            <li>
+                Type in the maximum size possible, press Enter and do it again as soon as it
+                wants you to do so. After that partition is formatted, press Enter again.
+            </li>
+
+            <li>
+                Select "Run a program" again but this time, type:
+                <code>cd:\mips\setupldr</code>
+            </li>
+
+            <li>
+                Now, install it as usual until you come to the hardware selection.
+            </li>
+
+            <li>
+                There, set your keyboard layout and after that, navigate to
+                "The above list matches my computer".
+            </li>
+
+            <li>
+                Select the partition we created earlier. Press enter to use that partition
+                and leave the current file system intact!
+            </li>
+
+            <li>
+                After the first part of installation is complete, you might need to restart the VM
+                as a whole again. Start it with the variables mentioned above, except this time, we
+                boot from c.
+            </li>
+
+            <li>
+                With Windows booted, go through Setup as usual, let Windows detect the network
+                adapter.
+            </li>
+
+            <li>
+                After Setup is complete, have fun.
+            </li>
+        </ol>
+
+        <h3 class="secondaryheading">Programs</h3>
+
+        <p>
+            Have I already mentioned the difficulties of finding programs for this
+            Windows NT port? To help you out, here is a list of some programs that
+            have been ported to Windows NT 4.0 MIPS.
+        </p>
+
+        <table>
+            <tr>
+                <th>Program name</th>
+                <th>Developer</th>
+                <th>Download</th>
+            </tr>
+
+            <tr>
+                <td>Visual C++ 2.0</td>
+                <td>Microsoft Corporation</td>
+                <td>Sorry, your responsibility</td>
+            </tr>
+
+            <tr>
+                <td>Visual C++ 4.0 RISC Edition for MIPS</td>
+                <td>Microsoft Corporation</td>
+                <td>Sorry, your responsibility</td>
+            </tr>
+
+            <tr>
+                <td>Windows 1.0 Example Applications</td>
+                <td>Microsoft Corporation, NCommander</td>
+                <td>
+                    <a href="https://github.com/NCommander/windows-1-apps-to-64-bit">
+                        https://github.com/NCommander/windows-1-apps-to-64-bit
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+        <p class="copyright">
+            This website and its content are licensed under
+            <a href="../../../license.html">BSD-3 Clause</a> if not stated otherwise.
+            (C) 2022 Nicolas Lucien and EmuGUI contributors. All rights reserved.
+        </p>
+    </div>
+
+    <script src="../../../../scripts/main.js"></script>
+</body>
+</html>
