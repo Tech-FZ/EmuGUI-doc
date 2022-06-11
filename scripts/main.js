@@ -1,7 +1,6 @@
 let vidpage = document.getElementsByClassName("vidpage");
 let emuguiAboutImg = document.getElementById("emuguiAboutImg");
 let winNT4MipsQemu = document.getElementById("winNT4MipsQemu");
-
 let devWidth = window.screen.availWidth;
 let devHeight = window.screen.availHeight;
 let vidWidth = "320";
