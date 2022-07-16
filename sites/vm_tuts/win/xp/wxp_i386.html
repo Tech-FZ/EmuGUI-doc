@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <link rel="icon" type="image/x-icon" href="../../../../EmuGUI.ico">
+    <title>The EmuGUI documentation</title>
+</head>
+<body>
+    <div class="site">
+        <h1 class="home"><a href="../../../../index.html">EmuGUI documentation</a></h1>
+        <h2 class="heading">How to install Windows XP i386 on QEMU with EmuGUI</h2>
+
+        <p>
+            Windows XP has been developed by Microsoft under the codename "Whistler"
+            and released on October 25th, 2001. Although it's EOL since 2014, a few
+            people still use it as their daily driver (not recommended). This is why
+            we just have to do this!
+        </p>
+
+        <img id="winNT4MipsQemu" width="547" height="462" src="../../../../media/WXP_I386_Qemu.png">
+        <p>Windows XP Home Edition SP3 running on QEMU. (Nicolas Lucien)</p>
+
+        <h3 class="secondaryheading">Video version</h3>
+
+        <iframe class="vidpage" width="320" height="180" src="https://www.youtube-nocookie.com/embed/Nh3jyKnKxlo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+        </iframe>
+
+        <p>
+            Made by lucien-rowan (aka Nicolas Lucien). (C) 2022 lucien-rowan. All rights reserved.<br>
+            Link: <a href="https://youtu.be/Nh3jyKnKxlo">https://youtu.be/Nh3jyKnKxlo</a>
+        </p>
+
+        <h3 class="secondaryheading">Prerequsites</h3>
+
+        <p>
+            Before you can install Windows XP, you must meet the following requirements:
+        </p>
+
+        <ol>
+            <li>
+                You must have EmuGUI and QEMU installed. If you haven't, the link is
+                <a href="../../../install_win.html">here.</a>
+            </li>
+
+            <li>
+                You must have a Windows XP ISO file. I won't show you how to get one
+                for legal reasons.
+            </li>
+        </ol>
+
+        <h3 class="secondaryheading">Creating the VM</h3>
+
+        <p>
+            Now, let's create a virtual machine. With EmuGUI opened, click on "New Virtual Machine"
+            and choose the following:
+        </p>
+
+        <ul>
+            <li>
+                Name: (your name here)
+            </li>
+
+            <li>
+                Architecture: "i386"
+            </li>
+
+            <li>
+                Machine: "Let QEMU decide"
+            </li>
+
+            <li>
+                CPU: "qemu64" or "host"
+            </li>
+
+            <li>
+                RAM: between 128 MB and 2 GB
+            </li>
+
+            <li>
+                VHD: QCOW2 format, 20 GB minimum
+            </li>
+
+            <li>
+                USB support
+            </li>
+
+            <li>
+                Additional arguments: "-accel tcg" (qemu64) or "-accel haxm" or "-accel whpx" (host)
+            </li>
+        </ul>
+
+        <h3 class="secondaryheading">Installing Windows</h3>
+
+        <p>
+            Now, everything should be fairly simple to get by yourself but here's the most
+            important anyway.
+        </p>
+
+        <ul>
+            <li>
+                CDROM: (your Windows XP ISO here)
+            </li>
+
+            <li>
+                Date & Time: Set to system
+            </li>
+
+            <li>
+                Boot from: d
+            </li>
+
+            <li>
+                File system: NTFS
+            </li>
+        </ul>
+
+        <p>
+            Everything else should be pretty easy.
+        </p>
+
+        <p class="copyright">
+            This website and its content are licensed under
+            <a href="../../../license.html">BSD-3 Clause</a> if not stated otherwise.
+            (C) 2022 Nicolas Lucien and EmuGUI contributors. All rights reserved.
+        </p>
+    </div>
+
+    <script src="../../../../scripts/main.js"></script>
+</body>
+</html>
