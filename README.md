@@ -1,11 +1,3 @@
 # EmuGUI Documentation
 
-The documentation for EmuGUI.
-
-## How to contribute
-
-There are several ways to contribute, including:
-- Working on the website itself
-- Making documentation
-- Making videos
-- Translation
+The EmuGUI Documentation is discontinued. Please visit the wiki on the Codeberg mirror instead: https://codeberg.org/lucien-rowan/EmuGUI/wiki
